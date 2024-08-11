@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@color/back_color"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.LoginActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login Activity"
+                android:textColor="#F44336"
+                android:textSize="34sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView">
+
+
+                <TextView
+                    android:id="@+id/tvNum1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Login Activity"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9ssp"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:drawableLeft="@drawable/book_open_svgrepo_com"
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/_8sdp"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:textColor="@color/black"
+                    android:background="@drawable/edit_text_shape"
+                    android:hint="@string/enter_your_number" />
+
+                <TextView
+                    android:id="@+id/tvNum2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Login Activity"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9ssp"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:drawableLeft="@drawable/book_open_svgrepo_com"
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/_8sdp"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:textColor="@color/black"
+                    android:background="@drawable/edit_text_shape"
+                    android:hint="@string/enter_your_number" />
+
+
+                <TextView
+                    android:id="@+id/tvNum3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Login Activity"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9ssp"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:drawableLeft="@drawable/book_open_svgrepo_com"
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/_8sdp"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:textColor="@color/black"
+                    android:background="@drawable/edit_text_shape"
+                    android:hint="@string/enter_your_number" />
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_200sdp"
+                    android:background="@drawable/edit_text_shape"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:cornerRadius="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:text="@string/continue_"/>
+            </LinearLayout>
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
