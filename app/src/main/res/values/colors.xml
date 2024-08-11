@@ -4,5 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="textshapecolor">#FFC107</color>
     <color name="back_color">#3E7E60</color>
+    <color name="back_color2">#ACEFD0</color>
     <color name="back_color1">#193528</color>
 </resources>

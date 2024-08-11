@@ -4,9 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardElevation="@dimen/_10sdp"
+        app:strokeWidth="0dp"
+        android:layout_margin="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        android:backgroundTint="@color/back_color2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -14,16 +19,42 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_5sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
             android:orientation="vertical">
             <TextView
                 android:id="@+id/tvName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/test"
+                android:textStyle="bold"
+                android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_15ssp"/>
+            <TextView
+                android:id="@+id/tvRoll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/test"
+                android:textColor="@color/back_color"
+                android:textSize="@dimen/_12ssp"/>
+            <TextView
+                android:id="@+id/tvAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/test"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"/>
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/test"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"/>
+
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

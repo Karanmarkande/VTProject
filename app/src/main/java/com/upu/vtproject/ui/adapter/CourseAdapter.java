@@ -9,15 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.upu.vtproject.databinding.CourseItemBinding;
+import com.upu.vtproject.model.StudentModel;
 
 import java.util.List;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder> {
 
     Context context;
-    List<String> item;
+    List<StudentModel> item;
 
-    public CourseAdapter(Context context, List<String> item) {
+    public CourseAdapter(Context context, List<StudentModel> item) {
         this.context = context;
         this.item = item;
     }
@@ -31,9 +32,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull CourseAdapter.ViewHolder holder, int position) {
-        String items = item.get(holder.getAdapterPosition());
+        StudentModel items = item.get(holder.getAdapterPosition());
 
-        holder.binding.tvName.setText(items);
+        holder.binding.tvName.setText("Name :"+items.getName());
+        holder.binding.tvRoll.setText("Roll no. :"+items.getRollNo());
+        holder.binding.tvAddress.setText("Address :"+items.getAddress());
+        holder.binding.tvDate.setText("DOB:"+items.getDateOfBirth());
 
     }
 

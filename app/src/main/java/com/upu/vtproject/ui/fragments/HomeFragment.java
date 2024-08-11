@@ -5,16 +5,25 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.upu.vtproject.R;
+import com.upu.vtproject.api.ApiClient;
+import com.upu.vtproject.api.ApiInterface;
+import com.upu.vtproject.api.response.StudentResponse;
 import com.upu.vtproject.databinding.FragmentHomeBinding;
+import com.upu.vtproject.model.StudentModel;
 import com.upu.vtproject.ui.adapter.CourseAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,8 +74,9 @@ public class HomeFragment extends Fragment {
 
 
     FragmentHomeBinding binding;
-    List<String> stringList = new ArrayList<>();
+    List<StudentModel> stringList = new ArrayList<>();
     CourseAdapter courseAdapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -77,21 +87,55 @@ public class HomeFragment extends Fragment {
     }
 
     private void initiateHome() {
-stringList.clear();
-        stringList.add("shantanu");
-        stringList.add("Raveena");
-        stringList.add("Manoj");
-        stringList.add("shantanu");
-        stringList.add("shantanu");
-        stringList.add("shantanu");
-        stringList.add("shantanu");
-        stringList.add("shantanu");
-        stringList.add("shantanu");
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        binding.recName.setLayoutManager(linearLayoutManager);
+        getStudent();
+    }
 
-        courseAdapter = new CourseAdapter(getContext(), stringList);
-        binding.recName.setAdapter(courseAdapter);
+    private void getStudent() {
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<StudentResponse> call = apiInterface.getStudents("Brearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hbm9qIiwiaWF0IjoxNzIzMzUyMTcyLCJleHAiOjE3MjMzODA5NzJ9.c6cwtobHRSS63od_CKFwP8jqoVDppH0uEVty9EEuTo8");
+        call.enqueue(new Callback<StudentResponse>() {
+            @Override
+            public void onResponse(Call<StudentResponse> call, Response<StudentResponse> response) {
+                stringList.clear();
+                stringList.addAll(response.body().getResults());
+
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+                binding.recName.setLayoutManager(linearLayoutManager);
+                courseAdapter = new CourseAdapter(getContext(), stringList);
+                binding.recName.setAdapter(courseAdapter);
+
+                courseAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onFailure(Call<StudentResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void getStudents() {
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<StudentResponse> call = apiInterface.getStudents("Brearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hbm9qIiwiaWF0IjoxNzIzMzY5OTQ3LCJleHAiOjE3MjMzOTg3NDd9.qxcjkGu4O-nZ6yFEMSfKiR5qmU19Omf8BzQuH0_lJJ4");
+        call.enqueue(new Callback<StudentResponse>() {
+            @Override
+            public void onResponse(Call<StudentResponse> call, Response<StudentResponse> response) {
+//                Log.d("test1", "onResponse: " + response.body().getResults());
+                try {
+                    if (String.valueOf(response.code()).equalsIgnoreCase("200")) {
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StudentResponse> call, Throwable t) {
+
+            }
+        });
     }
 }
