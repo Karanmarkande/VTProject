@@ -43,26 +43,6 @@
 
 
                 <TextView
-                    android:id="@+id/tvNum1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Login Activity"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_9ssp"
-                    android:drawablePadding="@dimen/_5sdp"
-                    android:drawableLeft="@drawable/book_open_svgrepo_com"
-                    />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="@dimen/_8sdp"
-                    android:paddingStart="@dimen/_8sdp"
-                    android:textColor="@color/black"
-                    android:background="@drawable/edit_text_shape"
-                    android:hint="@string/enter_your_number" />
-
-                <TextView
                     android:id="@+id/tvNum2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -74,6 +54,7 @@
                     />
 
                 <EditText
+                    android:id="@+id/etUserName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="@dimen/_8sdp"
@@ -95,6 +76,7 @@
                     />
 
                 <EditText
+                    android:id="@+id/etpass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="@dimen/_8sdp"

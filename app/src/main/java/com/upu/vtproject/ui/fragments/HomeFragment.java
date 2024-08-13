@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.upu.vtproject.R;
 import com.upu.vtproject.api.ApiClient;
@@ -17,6 +18,7 @@ import com.upu.vtproject.api.response.StudentResponse;
 import com.upu.vtproject.databinding.FragmentHomeBinding;
 import com.upu.vtproject.model.StudentModel;
 import com.upu.vtproject.ui.adapter.CourseAdapter;
+import com.upu.vtproject.utils.PreferenceUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +78,8 @@ public class HomeFragment extends Fragment {
     FragmentHomeBinding binding;
     List<StudentModel> stringList = new ArrayList<>();
     CourseAdapter courseAdapter;
+    String token = "";
+    String token1 = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,53 +91,48 @@ public class HomeFragment extends Fragment {
     }
 
     private void initiateHome() {
-
+        token=  PreferenceUtils.getString("token", getContext());
+        token1 = token.substring(1, token.length() - 1);
         getStudent();
     }
 
     private void getStudent() {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<StudentResponse> call = apiInterface.getStudents("Brearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hbm9qIiwiaWF0IjoxNzIzMzUyMTcyLCJleHAiOjE3MjMzODA5NzJ9.c6cwtobHRSS63od_CKFwP8jqoVDppH0uEVty9EEuTo8");
+        Call<StudentResponse> call = apiInterface.getStudents("Brearer "+token1);
         call.enqueue(new Callback<StudentResponse>() {
             @Override
             public void onResponse(Call<StudentResponse> call, Response<StudentResponse> response) {
-                stringList.clear();
-                stringList.addAll(response.body().getResults());
-
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-                binding.recName.setLayoutManager(linearLayoutManager);
-                courseAdapter = new CourseAdapter(getContext(), stringList);
-                binding.recName.setAdapter(courseAdapter);
-
-                courseAdapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onFailure(Call<StudentResponse> call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void getStudents() {
-        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<StudentResponse> call = apiInterface.getStudents("Brearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hbm9qIiwiaWF0IjoxNzIzMzY5OTQ3LCJleHAiOjE3MjMzOTg3NDd9.qxcjkGu4O-nZ6yFEMSfKiR5qmU19Omf8BzQuH0_lJJ4");
-        call.enqueue(new Callback<StudentResponse>() {
-            @Override
-            public void onResponse(Call<StudentResponse> call, Response<StudentResponse> response) {
-//                Log.d("test1", "onResponse: " + response.body().getResults());
                 try {
                     if (String.valueOf(response.code()).equalsIgnoreCase("200")) {
+                        if (response.body().getCode()==200) {
+                            stringList.clear();
+                            stringList.addAll(response.body().getResults());
 
+                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+                            binding.recName.setLayoutManager(linearLayoutManager);
+                            courseAdapter = new CourseAdapter(getContext(), stringList);
+                            binding.recName.setAdapter(courseAdapter);
+
+                            courseAdapter.notifyDataSetChanged();
+
+                        }else {
+                            Toast.makeText(getContext(), "Code Error", Toast.LENGTH_SHORT).show();
+                        }
+
+                    } else {
+                        Toast.makeText(getContext(), "Status Error", Toast.LENGTH_SHORT).show();
                     }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
+
             }
 
             @Override
             public void onFailure(Call<StudentResponse> call, Throwable t) {
+                Log.d("responseFail", "onFailure: " + t.toString());
 
             }
         });
